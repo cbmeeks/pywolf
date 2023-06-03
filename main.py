@@ -6,6 +6,7 @@ from settings import *
 from map import *
 from player import *
 from raycasting import *
+from object_renderer import *
 
 
 class Game:
@@ -19,6 +20,7 @@ class Game:
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.object_renderer = ObjectRenderer(self)
         self.raycasting = RayCasting(self)
 
     def update(self):
@@ -30,8 +32,10 @@ class Game:
 
     def draw(self):
         self.screen.fill("black")
-        # self.map.draw()
-        # self.player.draw()
+        self.object_renderer.draw()  # draw textured projection
+
+        # self.map.draw()                 # draw 2d representation
+        # self.player.draw()              #
 
     def check_events(self):
         for event in pg.event.get():
